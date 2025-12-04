@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unit Converter</title>
+    <link rel="stylesheet" href="static/style.css">
+</head>
+<body>
+    <h1>UNIT CONVERTER BY TMP :D:D:D:D</h1>
+    <nav>
+        <h2>What do you want to convert?</h2>
+        <h3>
+            <a href = "/lenght">Lenght</a>
+            |
+            <a href = "/weight">Weight</a>
+            |
+            <a href = "/temperature">Temperature</a>
+        </h3>
+    </nav>
+    <main>
+        <form method="post" action="/temperature">
+            <input type="number" name="value" required>
+
+            <select name="from">
+                <option value="c">celsius</option>
+                <option value="f">fahrenheit</option>
+                <option value="k">kelvin</option>
+                
+            </select>
+
+            <select name="to">
+                <option value="c">celsius</option>
+                <option value="f">fahrenheit</option>
+                <option value="k">kelvin</option>
+            </select>
+
+                <input type="submit" name="Convert">
+            </select>
+        </form>
+        <br>
+
+        {% if result is not none %}
+        <p>Converted value = {{ result }}</p>
+        {% endif %}
+    </main>
+</body>
+</html>

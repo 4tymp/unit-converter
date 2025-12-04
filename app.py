@@ -60,3 +60,31 @@ def weight():
 
     # render temolate wrzuca nam cos do folderu template, tutaj to co podamy. result = result potrzebne, bo pierwsze name to nazwa zmiennej w pliku a html, a druga to ta z tego pliku.
     return render_template("weight.html", result = result)
+
+@app.route("/temperature", methods =["GET","POST"])
+def temperature():
+    result = None
+    
+    #wyciaganie z htmla z metody post
+    if request.method == "POST":
+        value = float(request.form["value"])
+        unit_from = request.form["from"]
+        unit_to = request.form["to"]
+
+        # Najpierw zamieniamy wszystko na Celsjusze
+        if unit_from == "c":
+            celsius = value
+        elif unit_from == "f":
+            celsius = (value - 32) * 5/9
+        elif unit_from == "k":
+            celsius = value - 273.15
+
+        # Potem z Celsjusza na wybraną jednostkę
+        if unit_to == "c":
+            result = celsius
+        elif unit_to == "f":
+            result = celsius * 9/5 + 32
+        elif unit_to == "k":
+            result = celsius + 273.15
+
+    return render_template("temperature.html", result=result)
