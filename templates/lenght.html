@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unit Converter</title>
+    <link rel="stylesheet" href="static/style.css">
+</head>
+<body>
+    <h1>UNIT CONVERTER BY TMP :D:D:D:D</h1>
+    <nav>
+        <h2>What do you want to convert?</h2>
+        <h3>
+            <a href = "/lenght">Lenght</a>
+            |
+            <a href = "/weight">Weight</a>
+            |
+            <a href = "/temperature">Temperature</a>
+        </h3>
+    </nav>
+    <main>
+        <form method="post" action="/lenght">
+            <input type="number" name="value" required>
+
+            <select name="from">
+                <option value="mm">millimeter</option>
+                <option value="cm">centimeter</option>
+                <option value="m">meter</option>
+                <option value="km">kilometer</option>
+                <option value="inch">inch</option>
+                <option value="foot">foot</option>
+                <option value="yard">yard</option>
+                <option value="mile">mile</option>
+            </select>
+
+            <select name="to">
+                <option value="mm">millimeter</option>
+                <option value="cm">centimeter</option>
+                <option value="m">meter</option>
+                <option value="km">kilometer</option>
+                <option value="inch">inch</option>
+                <option value="foot">foot</option>
+                <option value="yard">yard</option>
+                <option value="mile">mile</option>
+
+                <input type="submit" name="Convert">
+            </select>
+        </form>
+        <br>
+
+        {% if result is not none %}
+        <p>Converted value = {{ result }}</p>
+        {% endif %}
+    </main>
+</body>
+</html>
