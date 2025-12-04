@@ -34,3 +34,29 @@ def lenght():
 
     # render temolate wrzuca nam cos do folderu template, tutaj to co podamy. result = result potrzebne, bo pierwsze name to nazwa zmiennej w pliku a html, a druga to ta z tego pliku.
     return render_template("lenght.html", result = result)
+
+@app.route("/weight", methods =["GET","POST"])
+def weight():
+    result = None
+    
+    #wyciaganie z htmla z metody post
+    if request.method == "POST":
+        value = float(request.form["value"])
+        unit_from = request.form["from"]
+        unit_to = request.form["to"]
+
+        # dict okreslajacy nasze jednostki (bazujacy na gramie)
+        conversions = {
+            "mg" : 0.001,
+            "g" : 1,
+            "kg" : 1000,
+            "oz" : 28.34952,
+            "lb" : 453.59237,
+        }
+
+        #konwersja najpierw na gram, a potem na docelowe jednostki
+        value_to_gram = value * conversions[unit_from]
+        result = value_to_gram / conversions[unit_to]
+
+    # render temolate wrzuca nam cos do folderu template, tutaj to co podamy. result = result potrzebne, bo pierwsze name to nazwa zmiennej w pliku a html, a druga to ta z tego pliku.
+    return render_template("weight.html", result = result)
